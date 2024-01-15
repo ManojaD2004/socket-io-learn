@@ -3,7 +3,7 @@ const createWsServer = require("socket.io").Server;
 
 const io = new createWsServer(http, {
   cors: {
-    origin: "https://manojad2004.github.io/socketio-client",
+    origin: "https://manojad2004.github.io",
     methods: ["GET", "POST"],
     credentials: true,
   },
