@@ -1,9 +1,11 @@
 const http = require("http").createServer();
+const createWsServer = require("socket.io").Server;
 
-const io = require("socket.io")(http, {
+const io = new createWsServer(http, {
   cors: {
     origin: "http://127.0.0.1:3000",
     methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 
@@ -15,5 +17,6 @@ io.on("connection", (socket) => {
     io.emit("message", `${socket.id.substr(0, 2)} said ${message}`);
   });
 });
+const port = process.env.PORT || 3000;
 
-http.listen(8080, () => console.log("listening on http://localhost:8080"));
+http.listen(port, () => console.log(`listening on ${port}`));
